@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Printing Output</title>
+    <!-- CSS -->
+    <style>
+      /* force light mode, dark mode was messing things up on Chrome */
+      :root {
+        color-scheme: light;
+      }
+
+      /* the classic reset, can't live without it */
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Helvetica Neue", Arial, sans-serif;
+        background-image: url("background.jpg");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed; /* parallax-ish effect */
+        color: white;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* main wrapper - centers everything vertically */
+      main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 80px 20px;
+        text-align: center;
+      }
+
+      .thin-title {
+        font-size: clamp(28px, 4.5vw, 52px);
+        font-weight: 300;
+        letter-spacing: 6px;
+        margin: 0;
+        text-transform: uppercase;
+        text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+      }
+
+      /* big chunky headline */
+      .bold-title {
+        font-size: clamp(64px, 11vw, 130px);
+        font-weight: 800;
+        letter-spacing: 2px;
+        margin: 8px 0 32px;
+        text-transform: uppercase;
+        line-height: 1;
+        text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+      }
+
+      /* tagline - kept it simple, no fancy styling needed here */
+      .tagline {
+        font-size: 14px;
+        letter-spacing: 1px;
+        margin-bottom: 24px;
+        opacity: 0.9;
+      }
+
+      .cta {
+        padding: 14px 36px;
+        font-size: 13px;
+        letter-spacing: 2.5px;
+        text-transform: uppercase;
+        color: white;
+        background: transparent;
+        border: 1.5px solid white;
+        border-radius: 4px;
+        cursor: pointer;
+        font-family: inherit;
+        transition: all 0.2s;
+      }
+
+      /* hover state - just a subtle highlight */
+      .cta:hover {
+        background: rgba(255, 255, 255, 0.15);
+      }
+
+    
+
+      #result {
+        margin: 0;
+        padding: 0;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        border-radius: 8px;
+        font-family: "Courier New", monospace;
+        font-size: 12px;
+        line-height: 1.7;
+        text-align: left;
+        white-space: pre-wrap;
+        color: white;
+        max-width: 600px;
+        width: 100%;
+        max-height: 0; /* start collapsed */
+        overflow: hidden;
+        transition:
+          max-height 0.4s ease,
+          padding 0.4s ease,
+          margin-top 0.4s ease;
+        backdrop-filter: blur(4px);
+      }
+
+      /* the .show class triggers the slide-down animation
+       note: 800px max-height is just a "big enough" value,
+       not perfect but works for this use case */
+      #result.show {
+        max-height: 800px;
+        padding: 24px;
+        margin-top: 32px;
+      }
+
+      footer {
+        padding: 0 60px 40px;
+      }
+
+      /* divider line in footer  */
+      .line {
+        height: 1px;
+        background: rgba(255, 255, 255, 0.3);
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <!-- header section -->
+      <h2 class="thin-title">Printing</h2>
+      <h1 class="bold-title">Output</h1>
+
+      <p class="tagline">Press the button to see the output</p>
+
+      <!-- inline onclick - i know, not best practice, but it's quick -->
+      <button class="cta" onclick="showOutput()">Show Output</button>
+
+      <!-- output goes here, gets filled by script.js -->
+      <pre id="result"></pre>
+    </main>
+
+    <footer>
+    
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
